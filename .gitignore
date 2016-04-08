@@ -1,3 +1,13 @@
+#ignorar
+
+config/config.js
+config/config.json
+node_modules
+
+#excepto el propio archivo gitignore
+
+!.gitignore
+
 # Logs
 logs
 *.log
