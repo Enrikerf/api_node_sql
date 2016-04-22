@@ -3,11 +3,11 @@ var mysql = require('mysql');
 var conn = require('../config/config.json');
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
 connection = mysql.createConnection(
-    { 
-        host: conn.Host,
-        user: conn.User,
-        password: conn.Password,
-        database: conn.Schema
+    {
+        host: conn.dbConfig.Host,
+        user: conn.dbConfig.User,
+        password: conn.dbConfig.Password,
+        database: conn.dbConfig.Schema
     }
 );
 
@@ -19,7 +19,7 @@ userModel.getUsers = function(callback)
 {
     if (connection)
     {
-        connection.query('SELECT * FROM users ORDER BY id', function(error, rows) {
+        connection.query('SELECT * FROM users ORDER BY id_user', function(error, rows) {
             if(error)
             {
                 throw error;
@@ -37,7 +37,7 @@ userModel.getUser = function(id,callback)
 {
     if (connection)
     {
-        var sql = 'SELECT * FROM users WHERE id = ' + connection.escape(id);
+        var sql = 'SELECT * FROM users WHERE id_user = ' + connection.escape(id);
         connection.query(sql, function(error, row)
         {
             if(error)
