@@ -10,6 +10,10 @@ var users = require('./routes/users');
 //necesario para utilizar los verbos put y delete en formularios
 var methodOverride = require('method-override');
 
+var Borrar_user = require('config/config.js');
+
+console.log(Borrar_user.User)
+
 var app = express();
 
 //configuración para ejs

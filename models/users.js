@@ -1,12 +1,13 @@
 //llamamos al paquete mysql que hemos instalado
-var mysql = require('mysql'),
+var mysql = require('mysql');
+var conn = require('../config/config.json');
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
 connection = mysql.createConnection(
     { 
-        host: 'localhost',
-        user: '',
-        password: '',
-        database: ''
+        host: conn.Host,
+        user: conn.User,
+        password: conn.Password,
+        database: conn.Schema
     }
 );
 

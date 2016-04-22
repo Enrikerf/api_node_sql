@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<winginx>
+  <project>
+    <name>apinode_sql</name>
+    <url>http://apinode_sql/</url>
+    <root>home/apinode_sql</root>
+  </project>
+</winginx>
