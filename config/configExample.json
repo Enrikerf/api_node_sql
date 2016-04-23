@@ -1,8 +1,19 @@
 {
   "dbConfig":{
-    "Host": "HOST",
-    "User": "DB_USER",
-    "Password": "DB_PASSWORD",
-    "Schema": "DB_SCHEMA"
+    "Host": "localhost",
+    "User": "backend",
+    "Password": "backend",
+    "Schema": "qbbodev"
+  },
+  "stormpath":{
+    "client": {
+      "apiKey":{
+        "id": "xxx",
+        "secret": "xxx"
+      }
+    },
+    "application":{
+      "href" : "xxx"
+    }
   }
 }
