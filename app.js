@@ -4,10 +4,10 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var app             = express();
 var stormpath       = require('express-stormpath');
+var config          = require('./config/config.json');
+var app             = express();
 
-var config = require('./config/config.json');
 //configuración para ejs
 app.set('views', path.join(__dirname, 'views'));
 app.use(logger('dev'));
@@ -24,7 +24,6 @@ app.use(methodOverride(function(req, res){
         return method
     }
 }));
-
 app.use(stormpath.init(app,{
     client: {
         apiKey:{
@@ -37,14 +36,13 @@ app.use(stormpath.init(app,{
     }
 }));
 
-
+//----------------------------------------------------------------------------------------------------------------------
 
 routes = require('./routes/users')(app);
 
 app.get('/test',stormpath.apiAuthenticationRequired,  function(req,res){
     res.json({test:"exito"});
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,10 +51,9 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-// error handlers
+// ERROR HANDLER
 
-// development error handler
-// will print stacktrace
+// development error handler will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500).send({
@@ -66,8 +63,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+// production error handler no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500)
         .send({
@@ -75,5 +71,7 @@ app.use(function(err, req, res, next) {
             error: {}
         });
 });
+
+
 
 module.exports = app;
