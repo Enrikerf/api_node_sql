@@ -73,5 +73,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
+app.on('stormpath.ready', function () {
+    console.log('Stormpath Ready!');
+});
 module.exports = app;
