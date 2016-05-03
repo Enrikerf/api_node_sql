@@ -1,4 +1,4 @@
-module.exports = function(app){
+module.exports = function(app,stormpath){
 
     var express = require('express');
     var router = express.Router();
@@ -114,10 +114,10 @@ module.exports = function(app){
     };
 
     //Link routes and functions
-    app.get('/user', getAllClients);
-    app.get('/user/:id', getClientById);
-    app.post('/user', createClient);
-    app.put('/user/:id', putClient);
-    app.delete('/user/:id', deleteClient);
+    app.get('/user',stormpath.apiAuthenticationRequired, getAllClients);
+    app.get('/user/:id',stormpath.apiAuthenticationRequired, getClientById);
+    app.post('/user',stormpath.apiAuthenticationRequired, createClient);
+    app.put('/user/:id',stormpath.apiAuthenticationRequired, putClient);
+    app.delete('/user/:id',stormpath.apiAuthenticationRequired, deleteClient);
 
 }

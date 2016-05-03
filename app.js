@@ -6,10 +6,12 @@ var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var stormpath       = require('express-stormpath');
 var config          = require('./config/config.json');
+var helmet          = require('helmet');// por seguridad: http://expressjs.com/en/advanced/best-practice-security.html
 var app             = express();
 
-//configuración para ejs
-app.set('views', path.join(__dirname, 'views'));
+
+app.disable('x-powered.by'); // lo minimo de seguridad de helmet
+app.use(helmet());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,7 +40,10 @@ app.use(stormpath.init(app,{
 
 //----------------------------------------------------------------------------------------------------------------------
 
-routes = require('./routes/users')(app);
+
+var users = require('./routes/users')(app,stormpath);
+
+
 
 app.get('/test',stormpath.apiAuthenticationRequired,  function(req,res){
     res.json({test:"exito"});

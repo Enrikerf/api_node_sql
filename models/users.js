@@ -11,7 +11,7 @@ connection = mysql.createConnection(
     }
 );
 
-//creamos un objeto para ir almacenando todo lo que necesitemos
+//creamos un objeto para ir almacenando lo que necesitemos
 var userModel = {};
  
 //obtenemos todos los usuarios
