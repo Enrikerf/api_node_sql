@@ -1,2 +1,6 @@
 # api_node_sql
-Api rest with node and sql
+
+API REST with Node js and mysql
+
+Oauth2 with Stormpath
+
