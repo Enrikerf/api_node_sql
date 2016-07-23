@@ -4,6 +4,9 @@ config/config.js
 config/config.json
 node_modules
 test
+.idea/
+./.idea
+idea
 
 #excepto el propio archivo gitignore
 
