@@ -6,7 +6,7 @@
  * mocha -u tdd: para que lo haga con inteface tdd y use los suite y describes
  */
 
-/*
+
 var assert = require('assert');
 
 describe('PROVES TEST',function(){
@@ -18,7 +18,7 @@ describe('PROVES TEST',function(){
     })
 })
 
-*/
+
 
 
 
