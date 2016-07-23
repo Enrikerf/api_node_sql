@@ -4,7 +4,7 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var stormpath       = require('express-stormpath');
+//var stormpath       = require('express-stormpath');
 var config          = require('./config/config.json');
 var helmet          = require('helmet');// por seguridad: http://expressjs.com/en/advanced/best-practice-security.html
 var app             = express();
@@ -26,6 +26,7 @@ app.use(methodOverride(function(req, res){
         return method
     }
 }));
+/*
 app.use(stormpath.init(app,{
     client: {
         apiKey:{
@@ -37,17 +38,15 @@ app.use(stormpath.init(app,{
         href : config.stormpath.application.href
     }
 }));
+*/
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-var users = require('./routes/users')(app,stormpath);
 
+var cities = require('./app/city/cityController')(app);//,stormpath)
+var users = require('./app/user/userController')(app);//,stormpath
 
-
-app.get('/test',stormpath.apiAuthenticationRequired,  function(req,res){
-    res.json({test:"exito"});
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -77,8 +76,9 @@ app.use(function(err, req, res, next) {
         });
 });
 
-
+/*
 app.on('stormpath.ready', function () {
     console.log('Stormpath Ready!');
 });
+*/
 module.exports = app;

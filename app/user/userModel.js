@@ -1,25 +1,22 @@
+/**
+ * Created by enrique on 07/07/2016.
+ */
+
+
 //llamamos al paquete mysql que hemos instalado
 var mysql = require('mysql');
-var conn = require('../config/config.json');
-//creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
-connection = mysql.createConnection(
-    {
-        host: conn.dbConfig.Host,
-        user: conn.dbConfig.User,
-        password: conn.dbConfig.Password,
-        database: conn.dbConfig.Schema
-    }
-);
+var myDb = require('../../config/initializers/mySqlModel');
+
 
 //creamos un objeto para ir almacenando lo que necesitemos
 var userModel = {};
- 
+
 //obtenemos todos los usuarios
 userModel.getUsers = function(callback)
 {
-    if (connection)
+    if (myDb)
     {
-        connection.query('SELECT * FROM users ORDER BY id_user', function(error, rows) {
+        myDb.query('SELECT * FROM users ORDER BY id_user', function(error, rows) {
             if(error)
             {
                 throw error;
@@ -31,14 +28,14 @@ userModel.getUsers = function(callback)
         });
     }
 }
- 
+
 //obtenemos un usuario por su id
 userModel.getUser = function(id,callback)
 {
-    if (connection)
+    if (myDb)
     {
-        var sql = 'SELECT * FROM users WHERE id_user = ' + connection.escape(id);
-        connection.query(sql, function(error, row)
+        var sql = 'SELECT * FROM users WHERE id_user = ' + myDb.escape(id);
+        myDb.query(sql, function(error, row)
         {
             if(error)
             {
@@ -51,13 +48,13 @@ userModel.getUser = function(id,callback)
         });
     }
 }
- 
+
 //a�adir un nuevo usuario
 userModel.insertUser = function(userData,callback)
 {
-    if (connection) 
+    if (myDb)
     {
-        connection.query('INSERT INTO users SET ?', userData, function(error, result) 
+        myDb.query('INSERT INTO users SET ?', userData, function(error, result)
         {
             if(error)
             {
@@ -71,18 +68,18 @@ userModel.insertUser = function(userData,callback)
         });
     }
 }
- 
+
 //actualizar un usuario
 userModel.updateUser = function(userData, callback)
 {
     //console.log(userData); return;
-    if(connection)
+    if(myDb)
     {
-        var sql = 'UPDATE users SET username = ' + connection.escape(userData.username) + ',' +  
-        'email = ' + connection.escape(userData.email) +
-        'WHERE id = ' + userData.id;
- 
-        connection.query(sql, function(error, result) 
+        var sql = 'UPDATE users SET username = ' + myDb.escape(userData.username) + ',' +
+            'email = ' + myDb.escape(userData.email) +
+            'WHERE id = ' + userData.id;
+
+        myDb.query(sql, function(error, result)
         {
             if(error)
             {
@@ -95,20 +92,20 @@ userModel.updateUser = function(userData, callback)
         });
     }
 }
- 
+
 //eliminar un usuario pasando la id a eliminar
 userModel.deleteUser = function(id, callback)
 {
-    if(connection)
+    if(myDb)
     {
-        var sqlExists = 'SELECT * FROM users WHERE id = ' + connection.escape(id);
-        connection.query(sqlExists, function(err, row) 
+        var sqlExists = 'SELECT * FROM users WHERE id = ' + myDb.escape(id);
+        myDb.query(sqlExists, function(err, row)
         {
             //si existe la id del usuario a eliminar
             if(row)
             {
-                var sql = 'DELETE FROM users WHERE id = ' + connection.escape(id);
-                connection.query(sql, function(error, result) 
+                var sql = 'DELETE FROM users WHERE id = ' + myDb.escape(id);
+                myDb.query(sql, function(error, result)
                 {
                     if(error)
                     {
@@ -127,6 +124,6 @@ userModel.deleteUser = function(id, callback)
         });
     }
 }
- 
+
 //exportamos el objeto para tenerlo disponible en la zona de rutas
 module.exports = userModel;

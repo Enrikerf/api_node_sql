@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-routes = require('./routes/users')(app);
+routes = require('./app/user/users')(app);
 
 
 
@@ -90,7 +90,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
  
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./app/user/users');
 //necesario para utilizar los verbos put y delete en formularios
 var methodOverride = require('method-override');
  

@@ -2,8 +2,8 @@
  * Created by Enrikerf on 15/02/2016.
  */
 
-function dbModel(){
-    this.dbConfig = require('../config/config.json').dbConfig;
+var DbModel = function (){
+    this.dbConfig = require('config.json').dbConfig;
     this.dbSql = require('mysql');
     this.connection = this.dbSql.createConnection(
         {
@@ -39,4 +39,4 @@ dbModel.prototype.dbQuery= function(sql,callback){
 
 
 
-module.exports = dbModel;
+module.exports = DbModel;

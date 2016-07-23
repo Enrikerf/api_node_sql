@@ -3,6 +3,7 @@
 config/config.js
 config/config.json
 node_modules
+test
 
 #excepto el propio archivo gitignore
 

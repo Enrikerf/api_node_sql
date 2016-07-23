@@ -1,8 +1,13 @@
-module.exports = function(app,stormpath){
+/**
+ * Created by enrique on 07/07/2016.
+ */
+
+
+module.exports = function(app){//,stormpath
 
     var express = require('express');
     var router = express.Router();
-    var UserModel = require('../models/users');
+    var UserModel = require('./userModel');
 
     /* Obtenemos y mostramos todos los usuarios */
     getAllClients = function(req, res)
@@ -114,10 +119,16 @@ module.exports = function(app,stormpath){
     };
 
     //Link routes and functions
+    app.get('/user',getAllClients);
+    app.get('/user/:id', getClientById);
+    app.post('/user', createClient);
+    app.put('/user/:id', putClient);
+    app.delete('/user/:id', deleteClient);
+/*
     app.get('/user',stormpath.apiAuthenticationRequired, getAllClients);
     app.get('/user/:id',stormpath.apiAuthenticationRequired, getClientById);
     app.post('/user',stormpath.apiAuthenticationRequired, createClient);
     app.put('/user/:id',stormpath.apiAuthenticationRequired, putClient);
     app.delete('/user/:id',stormpath.apiAuthenticationRequired, deleteClient);
-
+*/
 }
