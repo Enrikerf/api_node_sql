@@ -8,7 +8,11 @@ var sqlGetCities = 'SELECT * FROM cities ORDER BY id_city';
 
 var CityModel = function () {
     var MyDb = require('../../config/initializers/MyDb');
+    var CityView  = require('./cityView');
+
+    this.cityView = new CityView();
     this.myDb = new MyDb();
+
 };
 
 

@@ -3,9 +3,13 @@
  */
 
 
-var cityView = {};
+
 //TODO: habrá que hacer un swhitch supongo con los errores para renderizar 404 o lo que corresponda
-cityView.getView = function (error,data,res) {
+var CityView = function () {
+    
+}
+
+CityView.prototype.getView = function (error,data,res) {
     if (typeof data !== 'undefined'){
         res.send(data);
     }
@@ -17,9 +21,6 @@ cityView.getView = function (error,data,res) {
     }
 };
 
-cityView.throwError = function (data,res) {
-    res.json(404,{"msg":"notExist"});
-};
 
 //exportamos el objeto para tenerlo disponible en la zona de rutas
-module.exports = cityView;
+module.exports = CityView;
