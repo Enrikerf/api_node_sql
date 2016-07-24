@@ -5,7 +5,7 @@
 
 //llamamos al paquete mysql que hemos instalado
 var mysql = require('mysql');
-var myDb = require('../../config/initializers/mySqlModel');
+var myDb = require('../../config/initializers/MyDb');
 
 
 //creamos un objeto para ir almacenando lo que necesitemos

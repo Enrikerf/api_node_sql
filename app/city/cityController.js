@@ -22,6 +22,10 @@ module.exports = function cityController (app){//,stormpath
     };
 
     //Link routes and functions
+    app.param('id_city',function ( req,res,next,id_city) {
+        console.log('haciendo validaciones de ' + id_city);
+        next();
+    });
     app.get('/city', getAllCities);
     app.get('/city/:id_city', getCity);
 }

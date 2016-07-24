@@ -4,7 +4,7 @@
 
 
 
-var MySqlModel = function () {
+var MyDb = function () {
     this.dbMySql = require('mysql');
     this.config = require('../config.json');
     this.connection = this.dbMySql.createConnection(
@@ -17,11 +17,11 @@ var MySqlModel = function () {
     );
 };
 
-MySqlModel.prototype.getConfig = function () {
+MyDb.prototype.getConfig = function () {
     return this.config.dbConfig.Host;
 };
 
-MySqlModel.prototype.query = function (sql, callback) {
+MyDb.prototype.query = function (sql, callback) {
     
 
     this.connection.query(sql, function (error, rows) {
@@ -46,4 +46,4 @@ MySqlModel.prototype.query = function (sql, callback) {
 // delete
 
 
-module.exports = MySqlModel;
+module.exports = MyDb;
