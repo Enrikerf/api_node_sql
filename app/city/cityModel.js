@@ -17,15 +17,17 @@ var CityModel = function () {
 
 
 CityModel.prototype.getCities = function(callback){
-    this.myDb.query(sqlGetCities, function(error, rows) {
-            callback(error, rows);
+    this.myDb.query(sqlGetCities, function(error, results, fields) {
+        callback(error, result, fields);
     });
 }
 
 CityModel.prototype.getCity = function(id_city, callback){
-    var sql = 'SELECT * FROM cities WHERE id_city =' + id_city;
-    this.myDb.query( sql, function(error, rows) {
-        callback(error, rows);
+    var values = {id_city : id_city};
+    var sql = 'SELECT * FROM cities WHERE ?' ;
+    
+    this.myDb.query( sql, values, function(error, results, fields) {
+        callback(error, results, fields);
     });
 }
 

@@ -9,9 +9,13 @@ var CityView = function () {
     
 }
 
-CityView.prototype.getView = function (error,data,res) {
-    if (typeof data !== 'undefined'){
-        res.send(data);
+CityView.prototype.getView = function (res, error,results,fields) {
+
+    if (!error ){
+        res.send(results);
+        console.log(results);
+        console.log(error);
+        console.log(fields);// los datos de la cone
     }
     else
     {

@@ -10,7 +10,7 @@ var myDb = require('../../config/initializers/MyDb');
 
 //creamos un objeto para ir almacenando lo que necesitemos
 var userModel = {};
-
+/*
 //obtenemos todos los usuarios
 userModel.getUsers = function(callback)
 {
@@ -124,6 +124,6 @@ userModel.deleteUser = function(id, callback)
         });
     }
 }
-
+*/
 //exportamos el objeto para tenerlo disponible en la zona de rutas
 module.exports = userModel;

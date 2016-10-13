@@ -14,7 +14,7 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-//var stormpath     = require('express-stormpath');
+var stormpath     = require('express-stormpath');
 var config          = require('./config/config.json');
 var helmet          = require('helmet');// por seguridad: http://expressjs.com/en/advanced/best-practice-security.html
 var app             = express();
@@ -36,7 +36,7 @@ app.use(methodOverride(function(req, res){
         return method
     }
 }));
-/*
+
 app.use(stormpath.init(app,{
     client: {
         apiKey:{
@@ -48,7 +48,7 @@ app.use(stormpath.init(app,{
         href : config.stormpath.application.href
     }
 }));
-*/
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -88,9 +88,9 @@ app.use(function(err, req, res, next) {
         });
 });
 
-/*
+
 app.on('stormpath.ready', function () {
     console.log('Stormpath Ready!');
 });
-*/
+
 module.exports = app;

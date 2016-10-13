@@ -10,14 +10,14 @@ module.exports = function cityController (app){//,stormpath
 
     this.getAllCities = function (req, res){
         myCity.getCities( function obtainResponse(error, data){            
-            myCity.cityView.getView(error, data,res);            
+            myCity.cityView.getView(error, results, fields);            
         });
     };
 
     this.getCity = function (req, res){
         var id_city = req.params.id_city;
-        myCity.getCity(id_city, function obtainResponse(error, data){
-            myCity.cityView.getView(error, data,res);
+        myCity.getCity(id_city, function obtainResponse(error, results,fields){
+            myCity.cityView.getView(res, error, results, fields);
         });
     };
 
